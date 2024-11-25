@@ -1,0 +1,16 @@
+.pane{
+    -fx-background-color:  #C9E6F0;
+    -fx-background-radius: 20;
+}
+
+.buttonlogin{
+    -fx-background-color:  #003161;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+}
+
+/*.input{*/
+/*    -fx-background-color: #FBFBFB;*/
+/*    -fx-background-radius: 10;*/
+/*    -fx-text-fill: black;*/
+/*}*/
