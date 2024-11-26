@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @Data
@@ -19,8 +20,7 @@ public class StudentCourseDetails {
     private int studentCourseDetailID;
 
     @Column(name = "reg_date")
-    private String regDate;
-
+    private Date regDate;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

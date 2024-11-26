@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class Payment {
     private int paymentId;
 
     @Column(name = "payment_date")
-    private String paymentDate;
+    private Date paymentDate;
 
     @Column(name = "payment_method")
     private String paymentMethod;
