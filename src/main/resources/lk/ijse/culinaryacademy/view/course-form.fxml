@@ -4,8 +4,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -72,7 +70,7 @@
             </Button>
          </children>
       </Pane>
-      <TableView layoutX="14.0" layoutY="492.0" prefHeight="154.0" prefWidth="1040.0">
+      <TableView fx:id="CourseTableView" layoutX="14.0" layoutY="492.0" prefHeight="154.0" prefWidth="1040.0">
          <columns>
             <TableColumn fx:id="colCourseId" prefWidth="104.79998397827148" text="ID" />
             <TableColumn fx:id="colCourseName" prefWidth="265.6000213623047" text="NAME" />
@@ -81,10 +79,5 @@
             <TableColumn fx:id="colCourseDescription" minWidth="0.0" prefWidth="316.0" text="DESCRIPTION" />
          </columns>
       </TableView>
-      <ImageView fitHeight="250.0" fitWidth="207.0" layoutX="892.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assects/images/cute-girl-character-wearing-chef-hat-cooking-food-free-vector-removebg-preview%20(1).png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
