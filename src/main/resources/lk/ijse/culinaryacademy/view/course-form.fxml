@@ -76,7 +76,8 @@
             <TableColumn fx:id="colCourseName" prefWidth="265.6000213623047" text="NAME" />
             <TableColumn fx:id="colCourseDuration" prefWidth="182.4000244140625" text="DURATION" />
             <TableColumn fx:id="colCoursePrice" prefWidth="173.60003662109375" text="PRICE" />
-            <TableColumn fx:id="colCourseDescription" minWidth="0.0" prefWidth="316.0" text="DESCRIPTION" />
+            <TableColumn fx:id="colCourseDescription" minWidth="0.0" prefWidth="199.99993896484375" text="DESCRIPTION" />
+            <TableColumn fx:id="colAction" prefWidth="110.39996337890625" text="Action" />
          </columns>
       </TableView>
    </children>

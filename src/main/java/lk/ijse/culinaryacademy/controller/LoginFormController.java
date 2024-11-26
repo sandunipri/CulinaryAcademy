@@ -37,9 +37,7 @@ public class LoginFormController {
     @FXML
     private AnchorPane rootNodeLogin;
 
-    User user = null;
-
-
+    public static User user = null;
 
     @FXML
     void btnForgotPasswrodOnAction(ActionEvent event) {

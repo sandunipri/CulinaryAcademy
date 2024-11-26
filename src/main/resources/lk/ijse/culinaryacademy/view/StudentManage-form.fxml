@@ -83,14 +83,15 @@
             <Image url="@../assects/images/chef_boy-removebg-preview.png" />
          </image>
       </ImageView>
-      <TableView layoutX="39.0" layoutY="497.0" prefHeight="154.0" prefWidth="1040.0">
+      <TableView fx:id="StudentTableView" layoutX="39.0" layoutY="497.0" prefHeight="154.0" prefWidth="1040.0">
         <columns>
           <TableColumn fx:id="colStudentID" prefWidth="104.79998397827148" text="ID" />
           <TableColumn fx:id="colStudentName" prefWidth="148.80003356933594" text="NAME" />
             <TableColumn fx:id="colStudentNic" prefWidth="133.60000610351562" text="NIC" />
             <TableColumn fx:id="colStudentEmail" prefWidth="201.60000610351562" text="EMAIL" />
-            <TableColumn fx:id="colStudentAddress" minWidth="0.0" prefWidth="224.800048828125" text="ADDRESS" />
-            <TableColumn fx:id="colStudentTelNo" prefWidth="226.39990234375" text="TELNO" />
+            <TableColumn fx:id="colStudentAddress" minWidth="0.0" prefWidth="141.5999755859375" text="ADDRESS" />
+            <TableColumn fx:id="colStudentTelNo" prefWidth="164.79998779296875" text="TELNO" />
+            <TableColumn fx:id="colAction" prefWidth="141.5999755859375" text="Action" />
         </columns>
       </TableView>
    </children>
