@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootNodeMain" prefHeight="670.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.culinaryacademy.controller.MainFormContoller" />
+<AnchorPane fx:id="rootNodeMain" prefHeight="670.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.culinaryacademy.controller.MainFormContoller">
+   <children>
+      <Pane layoutX="821.0" layoutY="94.0" prefHeight="149.0" prefWidth="250.0" styleClass="pane" stylesheets="@../assects/CSS/main.css">
+         <children>
+            <Text layoutX="41.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENTS COUNT">
+               <font>
+                  <Font name="SimSun" size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelStudentCount" layoutX="117.0" layoutY="60.0" prefHeight="30.0" prefWidth="17.0">
+               <font>
+                  <Font name="SimSun" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="821.0" layoutY="476.0" prefHeight="150.0" prefWidth="250.0" styleClass="pane" stylesheets="@../assects/CSS/main.css">
+         <children>
+            <Text layoutX="23.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALL PAYMENT COUNT">
+               <font>
+                  <Font name="SimSun" size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelOrderCount" layoutX="125.0" layoutY="75.0" prefHeight="30.0" prefWidth="10.0">
+               <font>
+                  <Font name="SimSun" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="821.0" layoutY="278.0" prefHeight="150.0" prefWidth="250.0" styleClass="pane" stylesheets="@../assects/CSS/main.css">
+         <children>
+            <Text layoutX="47.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSES COUNT">
+               <font>
+                  <Font name="SimSun" size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelCourseCount" layoutX="120.0" layoutY="67.0" prefHeight="30.0" prefWidth="10.0">
+               <font>
+                  <Font name="SimSun" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="PaymentCourseTablrView" layoutX="44.0" layoutY="208.0" prefHeight="439.0" prefWidth="741.0">
+        <columns>
+          <TableColumn fx:id="colPaymentID" prefWidth="81.59997367858887" text="PAYMENT ID" />
+          <TableColumn fx:id="colStudentName" prefWidth="177.59998321533203" text="STUDENT NAME" />
+            <TableColumn fx:id="colCourseName" prefWidth="180.79998779296875" text="COURSE NAME" />
+            <TableColumn fx:id="colCoursePrice" prefWidth="161.60000610351562" text="COURSE PRICE" />
+            <TableColumn fx:id="colDate" prefWidth="147.199951171875" text="DATE" />
+        </columns>
+      </TableView>
+      <Text layoutX="44.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATE ">
+         <font>
+            <Font name="SimSun" size="33.0" />
+         </font>
+      </Text>
+      <Text layoutX="44.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIME">
+         <font>
+            <Font name="SimSun" size="33.0" />
+         </font>
+      </Text>
+      <Label fx:id="labelDate" layoutX="44.0" layoutY="62.0" prefHeight="32.0" prefWidth="260.0">
+         <font>
+            <Font name="SimSun" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTime" layoutX="49.0" layoutY="153.0" prefHeight="32.0" prefWidth="250.0">
+         <font>
+            <Font name="SimSun" size="30.0" />
+         </font>
+      </Label>
+      <Text layoutX="451.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELLO!">
+         <font>
+            <Font name="SimSun" size="33.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblUserName" layoutX="568.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User">
+         <font>
+            <Font name="SimSun" size="33.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblGreeting" layoutX="451.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Greeting">
+         <font>
+            <Font name="SimSun" size="33.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
