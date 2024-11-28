@@ -14,6 +14,11 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.culinaryacademy.controller.PlacePaymentFormController">
    <children>
+      <ImageView fitHeight="706.0" fitWidth="999.0" layoutX="40.0" opacity="0.32" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assects/images/backgroum%5Dnd%20image.jpg" />
+         </image>
+      </ImageView>
       <Text layoutX="378.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT MANAGEMENT">
          <font>
             <Font name="Serif Regular" size="28.0" />
@@ -26,7 +31,10 @@
                   <Font name="SimSun" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="txtStudentSearch" layoutX="14.0" layoutY="74.0" prefHeight="31.0" prefWidth="215.0" />
+            <TextField fx:id="txtStudentSearch" layoutX="14.0" layoutY="74.0" prefHeight="31.0" prefWidth="215.0" promptText="Student Telphone Number">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <Button fx:id="studentSearchbtn" layoutX="248.0" layoutY="74.0" mnemonicParsing="false" onAction="#btnStudentSearchClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="SEARCH">
                <font>
                   <Font name="SimSun-ExtB" size="17.0" />
@@ -61,9 +69,18 @@
                   <Font name="SimSun" size="19.0" />
                </font>
             </Text>
-            <TextField fx:id="txtcoursename" layoutX="14.0" layoutY="148.0" prefHeight="35.0" prefWidth="339.0" />
-            <TextField fx:id="txtcourseduration" layoutX="16.0" layoutY="222.0" prefHeight="35.0" prefWidth="339.0" />
-            <TextField fx:id="txtcourseprice" layoutX="16.0" layoutY="292.0" prefHeight="35.0" prefWidth="339.0" />
+            <TextField fx:id="txtcoursename" layoutX="14.0" layoutY="148.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Name">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtcourseduration" layoutX="16.0" layoutY="222.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Duration">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtcourseprice" layoutX="16.0" layoutY="292.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Price">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <Button layoutX="122.0" layoutY="357.0" mnemonicParsing="false" onAction="#btnAddToCartClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="ADD">
                <font>
                   <Font name="SimSun-ExtB" size="17.0" />
@@ -72,7 +89,7 @@
             <ChoiceBox fx:id="choiceCourse" layoutX="19.0" layoutY="77.0" prefHeight="25.0" prefWidth="215.0" />
          </children>
       </Pane>
-      <Pane layoutX="434.0" layoutY="397.0" prefHeight="219.0" prefWidth="658.0" styleClass="pane" stylesheets="@../assects/CSS/payment.css">
+      <Pane layoutX="434.0" layoutY="397.0" prefHeight="219.0" prefWidth="603.0" styleClass="pane" stylesheets="@../assects/CSS/payment.css">
          <children>
             <Text layoutX="287.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT">
                <font>
@@ -94,9 +111,15 @@
                   <Font name="SimSun" size="25.0" />
                </font>
             </Text>
-            <TextField fx:id="txtTotalPrice" layoutX="230.0" layoutY="49.0" prefHeight="31.0" prefWidth="356.0" />
-            <TextField fx:id="txtAmount" layoutX="230.0" layoutY="131.0" prefHeight="31.0" prefWidth="356.0" />
-            <Button layoutX="537.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnPayClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="PAY">
+            <TextField fx:id="txtTotalPrice" layoutX="230.0" layoutY="49.0" prefHeight="31.0" prefWidth="356.0" promptText="Total Price">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtAmount" layoutX="230.0" layoutY="131.0" prefHeight="31.0" prefWidth="356.0" promptText="Amount">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Button layoutX="471.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnPayClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="PAY">
                <font>
                   <Font name="SimSun-ExtB" size="17.0" />
                </font>

@@ -48,7 +48,14 @@
             </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="rootnodeDB" layoutX="286.0" layoutY="76.0" prefHeight="670.0" prefWidth="1100.0" style="-fx-background-color: #EBEAFF;" />
+        <AnchorPane fx:id="rootnodeDB" layoutX="286.0" layoutY="76.0" prefHeight="670.0" prefWidth="1100.0">
+         <children>
+            <ImageView fitHeight="670.0" fitWidth="1300.0" layoutX="58.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assects/images/backgroum%5Dnd%20image.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
       <Text layoutX="567.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THE CULINARY  ACADEMY">
          <font>
             <Font name="Serif Bold" size="40.0" />
