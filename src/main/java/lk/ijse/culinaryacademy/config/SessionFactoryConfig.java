@@ -1,6 +1,6 @@
 package lk.ijse.culinaryacademy.config;
 
-import lk.ijse.culinaryacademy.model.*;
+import lk.ijse.culinaryacademy.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

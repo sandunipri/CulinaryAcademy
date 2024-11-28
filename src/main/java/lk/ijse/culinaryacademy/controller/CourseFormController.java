@@ -7,12 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.culinaryacademy.bo.BOFactory;
+import lk.ijse.culinaryacademy.bo.custom.CourseBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
-import lk.ijse.culinaryacademy.model.Course;
-import lk.ijse.culinaryacademy.model.Student;
+import lk.ijse.culinaryacademy.dto.CourseDTO;
+import lk.ijse.culinaryacademy.entity.Course;
 import lk.ijse.culinaryacademy.view.tdm.CourseTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.loader.collection.OneToManyJoinWalker;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,6 +59,8 @@ public class CourseFormController {
 
     ObservableList<CourseTm> courseList = FXCollections.observableArrayList();
 
+    CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+
     public void initialize(){
         setCellValueFactory();
         loadCourse();
@@ -63,22 +68,20 @@ public class CourseFormController {
 
     private void loadCourse() {
         CourseTableView.getItems().clear();
-        Session session = SessionFactoryConfig.getInstance().getSession();
-
-        List<Course> courses= session.createQuery("FROM Course ", Course.class).getResultList();
 
 
+        List<CourseDTO> courseDTOS = courseBO.getAllCourses();
 
-        for (Course course : courses) {
+        for (CourseDTO courseDTO : courseDTOS) {
 
-            JFXButton btn = createButton(course.getId());
+            JFXButton btn = createButton(courseDTO.getId());
 
             CourseTm coursesTm = new CourseTm(
-                    course.getId(),
-                    course.getName(),
-                    course.getDuration(),
-                    course.getPrice(),
-                    course.getDescription(),
+                    courseDTO.getId(),
+                    courseDTO.getName(),
+                    courseDTO.getDuration(),
+                    courseDTO.getPrice(),
+                    courseDTO.getDescription(),
                     btn);
             courseList.add(coursesTm);
         }
@@ -123,13 +126,9 @@ public class CourseFormController {
         double price = Double.parseDouble(courseprice.getText());
         String description = coursedescription.getText();
 
-        Course course = new Course(1, name, duration, price, description);
+        CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
 
-        Session session = SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction  = session.beginTransaction();
-        session.save(course);
-        transaction.commit();
-        session.close();
+        courseBO.addCourse(courseDTO);
 
         loadCourse();
         new Alert(Alert.AlertType.INFORMATION, "Course added successfully").show();

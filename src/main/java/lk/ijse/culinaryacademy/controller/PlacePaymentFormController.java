@@ -6,10 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
-import lk.ijse.culinaryacademy.model.Course;
-import lk.ijse.culinaryacademy.model.Payment;
-import lk.ijse.culinaryacademy.model.Student;
-import lk.ijse.culinaryacademy.model.StudentCourseDetails;
+import lk.ijse.culinaryacademy.entity.Course;
+import lk.ijse.culinaryacademy.entity.Payment;
+import lk.ijse.culinaryacademy.entity.Student;
+import lk.ijse.culinaryacademy.entity.StudentCourseDetails;
 import lk.ijse.culinaryacademy.view.tdm.PaymentTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,7 +21,9 @@ import java.util.Optional;
 
 public class PlacePaymentFormController {
 
-    public JFXButton courseSearchbtn;
+    @FXML
+    public Button courseSearchbtn;
+    public Button studentSearchbtn;
 
     @FXML
     private TableView<PaymentTm> PaymenttableView;
@@ -85,7 +87,7 @@ public class PlacePaymentFormController {
     private void loadCourses() {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
-        List<Course> courseList = session.createQuery("FROM Course", Course.class).getResultList();
+        List<Course> courseList = session.createQuery("FROM CourseDTO", Course.class).getResultList();
         try{
             choiceCourse.getItems().clear();
             for (Course course : courseList) {
@@ -138,7 +140,7 @@ public class PlacePaymentFormController {
 
             Optional<ButtonType> type = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to remove?", yes, no).showAndWait();
             if (type.orElse(no) == yes) {
-                PaymenttableView.getItems().remove(selectedCourse);
+                PaymenttableView.getItems().clear();
                 choiceCourse.setDisable(false);
                 courseSearchbtn.setDisable(false);
             }
@@ -159,7 +161,7 @@ public class PlacePaymentFormController {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
         try{
-            selectedCourse = session.createQuery("FROM Course WHERE name = :Cname", Course.class)
+            selectedCourse = session.createQuery("FROM CourseDTO WHERE name = :Cname", Course.class)
                     .setParameter("Cname", courseName)
                     .uniqueResult();
 
@@ -217,7 +219,7 @@ public class PlacePaymentFormController {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
         try {
-            selectedStudent = session.createQuery("FROM Student WHERE telno = :contact", Student.class)
+            selectedStudent = session.createQuery("FROM StudentDTO WHERE telno = :contact", Student.class)
                     .setParameter("contact", studentContact)
                     .uniqueResult();
 

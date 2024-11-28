@@ -8,9 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
-import lk.ijse.culinaryacademy.model.User;
+import lk.ijse.culinaryacademy.entity.User;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 

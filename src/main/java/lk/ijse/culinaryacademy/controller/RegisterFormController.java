@@ -7,12 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
-import lk.ijse.culinaryacademy.model.User;
+import lk.ijse.culinaryacademy.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

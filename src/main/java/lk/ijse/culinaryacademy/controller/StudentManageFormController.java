@@ -8,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.culinaryacademy.bo.BOFactory;
+import lk.ijse.culinaryacademy.bo.custom.StudentBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
-import lk.ijse.culinaryacademy.model.Course;
-import lk.ijse.culinaryacademy.model.Student;
-import lk.ijse.culinaryacademy.model.User;
+import lk.ijse.culinaryacademy.dto.StudentDTO;
+import lk.ijse.culinaryacademy.entity.Student;
+import lk.ijse.culinaryacademy.entity.User;
 import lk.ijse.culinaryacademy.view.tdm.StudentTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -68,6 +70,8 @@ public class StudentManageFormController {
 
     ObservableList<StudentTm> studentList = FXCollections.observableArrayList();
 
+    StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+
     public void initialize(){
         setCellValueFactory();
         loadStudent();
@@ -75,21 +79,26 @@ public class StudentManageFormController {
 
     private void loadStudent() {
         StudentTableView.getItems().clear();
+/*
         Session session = SessionFactoryConfig.getInstance().getSession();
+*/
 
+/*
         List<Student> students = session.createQuery("FROM Student", Student.class).getResultList();
+*/
+        List<StudentDTO> studentDTOS = studentBO.getAllStudents();
 
-        for (Student student : students) {
+        for (StudentDTO studentDTO : studentDTOS) {
 
-            JFXButton btn = createButton(student.getId());
+            JFXButton btn = createButton(studentDTO.getId());
 
             StudentTm studentTm = new StudentTm(
-                    student.getId(),
-                    student.getName(),
-                    student.getNic(),
-                    student.getEmail(),
-                    student.getAddress(),
-                    student.getTelno(),
+                    studentDTO.getId(),
+                    studentDTO.getName(),
+                    studentDTO.getNic(),
+                    studentDTO.getEmail(),
+                    studentDTO.getAddress(),
+                    studentDTO.getTelno(),
                     btn
             );
             studentList.add(studentTm);
@@ -138,14 +147,9 @@ public class StudentManageFormController {
         String nic = studentnic.getText();
         String telNo = studenttelno.getText();
 
-        Student student = new Student(1, name, nic, email, address, telNo, user);
+        StudentDTO studentDTO = new StudentDTO(1, name, nic, email, address, telNo, user);
 
-        Session session = SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(student);
-        transaction.commit();
-        session.close();
-
+        studentBO.addStudent(studentDTO);
 
         loadStudent();
         new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();

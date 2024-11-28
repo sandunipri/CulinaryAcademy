@@ -27,7 +27,7 @@
                </font>
             </Text>
             <TextField fx:id="txtStudentSearch" layoutX="14.0" layoutY="74.0" prefHeight="31.0" prefWidth="215.0" />
-            <Button layoutX="248.0" layoutY="74.0" mnemonicParsing="false" onAction="#btnStudentSearchClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="SEARCH">
+            <Button fx:id="studentSearchbtn" layoutX="248.0" layoutY="74.0" mnemonicParsing="false" onAction="#btnStudentSearchClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="SEARCH">
                <font>
                   <Font name="SimSun-ExtB" size="17.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Font name="SimSun" size="24.0" />
                </font>
             </Text>
-            <Button layoutX="248.0" layoutY="74.0" mnemonicParsing="false" onAction="#btnCourseSearchClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="SEARCH">
+            <Button fx:id="courseSearchbtn" layoutX="248.0" layoutY="74.0" mnemonicParsing="false" onAction="#btnCourseSearchClickOnAction" prefHeight="31.0" prefWidth="97.0" stylesheets="@../assects/CSS/Student.css" text="SEARCH">
                <font>
                   <Font name="SimSun-ExtB" size="17.0" />
                </font>
