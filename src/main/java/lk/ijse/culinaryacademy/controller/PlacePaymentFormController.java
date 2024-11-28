@@ -61,8 +61,6 @@ public class PlacePaymentFormController {
     @FXML
     private TextField txtcourseprice;
 
-
-
     Date date = new Date(System.currentTimeMillis());
     Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 
@@ -87,7 +85,7 @@ public class PlacePaymentFormController {
     private void loadCourses() {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
-        List<Course> courseList = session.createQuery("FROM CourseDTO", Course.class).getResultList();
+        List<Course> courseList = session.createQuery("FROM Course", Course.class).getResultList();
         try{
             choiceCourse.getItems().clear();
             for (Course course : courseList) {
@@ -161,7 +159,7 @@ public class PlacePaymentFormController {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
         try{
-            selectedCourse = session.createQuery("FROM CourseDTO WHERE name = :Cname", Course.class)
+            selectedCourse = session.createQuery("FROM Course WHERE name = :Cname", Course.class)
                     .setParameter("Cname", courseName)
                     .uniqueResult();
 
@@ -219,7 +217,7 @@ public class PlacePaymentFormController {
         Session session = SessionFactoryConfig.getInstance().getSession();
 
         try {
-            selectedStudent = session.createQuery("FROM StudentDTO WHERE telno = :contact", Student.class)
+            selectedStudent = session.createQuery("FROM Student WHERE telno = :contact", Student.class)
                     .setParameter("contact", studentContact)
                     .uniqueResult();
 

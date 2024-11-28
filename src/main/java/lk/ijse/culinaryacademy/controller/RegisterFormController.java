@@ -10,7 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.culinaryacademy.bo.BOFactory;
+import lk.ijse.culinaryacademy.bo.custom.UserBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
+import lk.ijse.culinaryacademy.dto.UserDTO;
 import lk.ijse.culinaryacademy.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -40,6 +43,8 @@ public class RegisterFormController {
     @FXML
     private TextField username;
 
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+
     @FXML
     void btnBackOnAction(ActionEvent event) {
         AnchorPane rootNode = null;
@@ -62,12 +67,10 @@ public class RegisterFormController {
         String email = useremail.getText();
         String password = passwrod.getText();
 
-        User user = new User(email, number, name, password);
-        Session session = SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(user);
-        transaction.commit();
-        session.close();
+        UserDTO userDTO = new UserDTO(email, number, name, password);
+
+
+        userBO.addUser(userDTO);
 
         clearFields();
 
