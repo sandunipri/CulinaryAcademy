@@ -157,8 +157,6 @@ public class StudentManageFormController {
 
             loadStudent();
             new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();
-        }else {
-            new Alert(Alert.AlertType.ERROR, "Please fill correct details").show();
         }
 
         clearFields();
