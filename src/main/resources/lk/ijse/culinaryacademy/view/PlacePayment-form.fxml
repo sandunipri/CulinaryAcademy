@@ -31,7 +31,7 @@
                   <Font name="SimSun" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="txtStudentSearch" layoutX="14.0" layoutY="74.0" prefHeight="31.0" prefWidth="215.0" promptText="Student Telphone Number">
+            <TextField fx:id="txtStudentSearch" layoutX="14.0" layoutY="74.0" onKeyReleased="#txtCourseTelNoKeyRealeasedOnAction" prefHeight="31.0" prefWidth="215.0" promptText="Student Telphone Number">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -69,15 +69,15 @@
                   <Font name="SimSun" size="19.0" />
                </font>
             </Text>
-            <TextField fx:id="txtcoursename" layoutX="14.0" layoutY="148.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Name">
+            <TextField fx:id="txtcoursename" layoutX="14.0" layoutY="148.0" onKeyReleased="#txtCourseNameKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Name">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtcourseduration" layoutX="16.0" layoutY="222.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Duration">
+            <TextField fx:id="txtcourseduration" layoutX="16.0" layoutY="222.0" onKeyReleased="#txtCourseDurationKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Duration">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtcourseprice" layoutX="16.0" layoutY="292.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Price">
+            <TextField fx:id="txtcourseprice" layoutX="16.0" layoutY="292.0" onKeyReleased="#txtCoursePriceKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Price">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -111,11 +111,11 @@
                   <Font name="SimSun" size="25.0" />
                </font>
             </Text>
-            <TextField fx:id="txtTotalPrice" layoutX="230.0" layoutY="49.0" prefHeight="31.0" prefWidth="356.0" promptText="Total Price">
+            <TextField fx:id="txtTotalPrice" layoutX="230.0" layoutY="49.0" onKeyReleased="#txtTotalPriceKeyRealeasedOnAction" prefHeight="31.0" prefWidth="356.0" promptText="Total Price">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtAmount" layoutX="230.0" layoutY="131.0" prefHeight="31.0" prefWidth="356.0" promptText="Amount">
+            <TextField fx:id="txtAmount" layoutX="230.0" layoutY="131.0" onKeyReleased="#txtAmountKeyRealeasedOnAction" prefHeight="31.0" prefWidth="356.0" promptText="Amount">
                <font>
                   <Font size="14.0" />
                </font></TextField>

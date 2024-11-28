@@ -16,11 +16,6 @@
                         <Font name="SimSun-ExtB" size="27.0" />
                     </font>
                 </Text>
-                <Button fx:id="admin" layoutX="51.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnAdminOnAction" style="-fx-background-color: #000B58;" text="Admin" textFill="WHITE">
-                    <font>
-                        <Font name="SimSun-ExtB" size="22.0" />
-                    </font>
-                </Button>
                 <Button fx:id="student" layoutX="51.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnStudentOnAction" style="-fx-background-color: #000B58;" text="Student" textFill="WHITE">
                     <font>
                         <Font name="SimSun-ExtB" size="22.0" />
@@ -36,7 +31,7 @@
                         <Font name="SimSun-ExtB" size="22.0" />
                     </font>
                 </Button>
-                <Button fx:id="home" layoutX="51.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnHomeOnAction" style="-fx-background-color: #000B58;" text="Home" textFill="WHITE">
+                <Button fx:id="home" layoutX="51.0" layoutY="163.0" mnemonicParsing="false" onAction="#btnHomeOnAction" style="-fx-background-color: #000B58;" text="Home" textFill="WHITE">
                     <font>
                         <Font name="SimSun-ExtB" size="22.0" />
                     </font>

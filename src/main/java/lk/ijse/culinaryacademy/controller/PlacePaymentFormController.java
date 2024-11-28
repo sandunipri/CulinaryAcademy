@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.culinaryacademy.bo.BOFactory;
 import lk.ijse.culinaryacademy.bo.custom.PlacePaymentBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
@@ -16,6 +17,8 @@ import lk.ijse.culinaryacademy.entity.Course;
 import lk.ijse.culinaryacademy.entity.Payment;
 import lk.ijse.culinaryacademy.entity.Student;
 import lk.ijse.culinaryacademy.entity.StudentCourseDetails;
+import lk.ijse.culinaryacademy.util.Regex;
+import lk.ijse.culinaryacademy.util.TextFeid;
 import lk.ijse.culinaryacademy.view.tdm.PaymentTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -181,12 +184,15 @@ public class PlacePaymentFormController {
         double balance = selectedCourse.getPrice() - Double.parseDouble(txtAmount.getText());
         PaymentDTO paymentDTO= new PaymentDTO(1,date,choicePaymentMethod.getValue(),selectedCourse.getPrice(),balance,studentCourseDetailsDTO);
 
-        placePaymentBO.placepayment(studentCourseDetailsDTO,paymentDTO);
+        if (isValid()){
+            placePaymentBO.placepayment(studentCourseDetailsDTO,paymentDTO);
 
-        new Alert(Alert.AlertType.INFORMATION, "Payment Successful").show();
+            new Alert(Alert.AlertType.INFORMATION, "Payment Successful").show();
+        }
 
 
     }
+
 
     @FXML
     void btnStudentSearchClickOnAction(ActionEvent event) {
@@ -209,4 +215,60 @@ public class PlacePaymentFormController {
 
     }
 
+
+    public boolean isValid() {
+        if (!Regex.setTextColor(TextFeid.name, txtcoursename)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.duration, txtcourseduration)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.Price, txtcourseprice)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.Amount, txtAmount)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.Amount, txtTotalPrice)) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+
+    public void txtCourseTelNoKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.TelNo, txtStudentSearch)) {
+
+        }
+
+    }
+
+    public void txtCourseNameKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.name, txtcoursename)) {
+        }
+    }
+
+    public void txtCourseDurationKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.duration, txtcourseduration)) {
+        }
+    }
+
+    public void txtCoursePriceKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Price, txtcourseprice)) {
+        }
+    }
+
+    public void txtTotalPriceKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Price, txtTotalPrice)) {
+        }
+
+    }
+
+    public void txtAmountKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Amount, txtAmount)) {
+        }
+
+    }
 }
