@@ -7,11 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.culinaryacademy.bo.BOFactory;
 import lk.ijse.culinaryacademy.bo.custom.CourseBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
 import lk.ijse.culinaryacademy.dto.CourseDTO;
 import lk.ijse.culinaryacademy.entity.Course;
+import lk.ijse.culinaryacademy.util.Regex;
+import lk.ijse.culinaryacademy.util.TextFeid;
 import lk.ijse.culinaryacademy.view.tdm.CourseTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -126,20 +129,17 @@ public class CourseFormController {
         String duration = courseduration.getText();
         double price = Double.parseDouble(courseprice.getText());
         String description = coursedescription.getText();
+        if (isValid()) {
 
-        CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
+            CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
 
-        courseBO.addCourse(courseDTO);
+            courseBO.addCourse(courseDTO);
 
-        loadCourse();
-        new Alert(Alert.AlertType.INFORMATION, "Course added successfully").show();
+            loadCourse();
+            new Alert(Alert.AlertType.INFORMATION, "Course added successfully").show();
+        }
 
         clearFields();
-
-    }
-
-    @FXML
-    void btnDeleteCoursesOnAction(ActionEvent event) {
 
     }
 
@@ -190,5 +190,40 @@ public class CourseFormController {
         coursedescription.clear();
     }
 
+    public boolean isValid() {
+        if (!Regex.setTextColor(TextFeid.description, coursedescription)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.duration, courseduration)) {
+            return false;
+        }
+        if(!Regex.setTextColor(TextFeid.Price, courseprice)){
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.name, coursename)) {
+            return false;
+        }
 
+        return true;
+    }
+
+
+    public void txtCourseNameKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.name, coursename)) {}
+    }
+
+    public void txtCourseDurationKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.duration, courseduration)) {}
+
+    }
+
+    public void txtCourseDescriptiionKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.description, coursedescription)) {}
+
+    }
+
+    public void txtCoursepriceKeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Price, courseprice)) {}
+
+    }
 }

@@ -54,19 +54,19 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="coursename" layoutX="52.0" layoutY="158.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Name">
+            <TextField fx:id="coursename" layoutX="52.0" layoutY="158.0" onKeyReleased="#txtCourseNameKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Name">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="coursedescription" layoutX="52.0" layoutY="236.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Description">
+            <TextField fx:id="coursedescription" layoutX="52.0" layoutY="236.0" onKeyReleased="#txtCourseDescriptiionKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Description">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="courseduration" layoutX="511.0" layoutY="158.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Duration">
+            <TextField fx:id="courseduration" layoutX="511.0" layoutY="158.0" onKeyReleased="#txtCourseDurationKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Duration">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="courseprice" layoutX="509.0" layoutY="236.0" prefHeight="35.0" prefWidth="339.0" promptText="Course Price">
+            <TextField fx:id="courseprice" layoutX="509.0" layoutY="236.0" onKeyReleased="#txtCoursepriceKeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Course Price">
                <font>
                   <Font size="14.0" />
                </font></TextField>
