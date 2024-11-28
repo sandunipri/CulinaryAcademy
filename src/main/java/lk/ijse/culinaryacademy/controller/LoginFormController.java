@@ -70,13 +70,19 @@ public class LoginFormController {
                 Stage stage = (Stage) rootNodeLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.centerOnScreen();
-            }else {
-
-
             }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Invalid Credentials").show();
+            clearfeilds();
         }
 
 
+
+    }
+
+    private void clearfeilds() {
+        email.clear();
+        passwrod.clear();
 
     }
 

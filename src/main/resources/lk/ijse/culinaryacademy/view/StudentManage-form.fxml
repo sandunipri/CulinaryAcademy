@@ -59,23 +59,23 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="studentName" layoutX="52.0" layoutY="158.0" prefHeight="35.0" prefWidth="339.0" promptText="Student Name">
+            <TextField fx:id="studentName" layoutX="52.0" layoutY="158.0" onKeyReleased="#txtStudentNamekeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Student Name">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="studentnic" layoutX="52.0" layoutY="236.0" prefHeight="35.0" prefWidth="339.0" promptText="Student NIC">
+            <TextField fx:id="studentnic" layoutX="52.0" layoutY="236.0" onKeyReleased="#txtStudentNICkeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Student NIC">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="studentemail" layoutX="513.0" layoutY="80.0" prefHeight="35.0" prefWidth="339.0" promptText="Student Email">
+            <TextField fx:id="studentemail" layoutX="513.0" layoutY="80.0" onKeyReleased="#txtStudentEmailkeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Student Email">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="studentAddress" layoutX="513.0" layoutY="158.0" prefHeight="35.0" prefWidth="339.0" promptText="Student Address">
+            <TextField fx:id="studentAddress" layoutX="513.0" layoutY="158.0" onKeyReleased="#txtStudentAddresskeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Student Address">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField fx:id="studenttelno" layoutX="513.0" layoutY="236.0" prefHeight="35.0" prefWidth="339.0" promptText="Student Telphone Number">
+            <TextField fx:id="studenttelno" layoutX="513.0" layoutY="236.0" onKeyReleased="#txtStudentTelNokeyRealeasedOnAction" prefHeight="35.0" prefWidth="339.0" promptText="Student Telphone Number">
                <font>
                   <Font size="14.0" />
                </font></TextField>

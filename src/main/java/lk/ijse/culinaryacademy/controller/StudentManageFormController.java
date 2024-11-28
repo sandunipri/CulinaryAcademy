@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.culinaryacademy.bo.BOFactory;
 import lk.ijse.culinaryacademy.bo.custom.StudentBO;
@@ -15,6 +16,8 @@ import lk.ijse.culinaryacademy.dto.CourseDTO;
 import lk.ijse.culinaryacademy.dto.StudentDTO;
 import lk.ijse.culinaryacademy.entity.Student;
 import lk.ijse.culinaryacademy.entity.User;
+import lk.ijse.culinaryacademy.util.Regex;
+import lk.ijse.culinaryacademy.util.TextFeid;
 import lk.ijse.culinaryacademy.view.tdm.StudentTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -149,21 +152,22 @@ public class StudentManageFormController {
         String telNo = studenttelno.getText();
 
         StudentDTO studentDTO = new StudentDTO(1, name, nic, email, address, telNo, user);
+        if (isValid()) {
+            studentBO.addStudent(studentDTO);
 
-        studentBO.addStudent(studentDTO);
+            loadStudent();
+            new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please fill correct details").show();
+        }
 
-        loadStudent();
-        new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();
         clearFields();
 
 
 
     }
 
-    @FXML
-    void btnStudentDeleteClickOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnStudentSearchClickOnAction(ActionEvent event) {
@@ -213,4 +217,57 @@ public class StudentManageFormController {
         studenttelno.clear();
 
     }
+
+    public boolean isValid() {
+        if (!Regex.setTextColor(TextFeid.name, studentName)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.nic, studentnic)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.Email, studentemail)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.TelNo, studenttelno)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.Address, studentAddress)) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public void txtStudentTelNokeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.TelNo, studenttelno)) {
+
+        }
+    }
+
+    public void txtStudentAddresskeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Address, studentAddress)) {
+
+        }
+
+    }
+
+    public void txtStudentEmailkeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Email, studentemail)) {
+
+        }
+    }
+
+    public void txtStudentNICkeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.nic, studentnic)) {
+
+        }
+    }
+
+    public void txtStudentNamekeyRealeasedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.name, studentName)) {
+
+        }
+    }
+
 }

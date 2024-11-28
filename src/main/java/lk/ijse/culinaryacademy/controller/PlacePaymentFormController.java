@@ -188,9 +188,26 @@ public class PlacePaymentFormController {
             placePaymentBO.placepayment(studentCourseDetailsDTO,paymentDTO);
 
             new Alert(Alert.AlertType.INFORMATION, "Payment Successful").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
         }
+        clearfeilds();
 
 
+    }
+
+    private void clearfeilds() {
+        txtcoursename.clear();
+        txtcourseduration.clear();
+        txtcourseprice.clear();
+        txtAmount.clear();
+        txtTotalPrice.clear();
+        txtStudentSearch.clear();
+        choiceCourse.setDisable(false);
+        courseSearchbtn.setDisable(false);
+        selectedCourse = null;
+        selectedStudent = null;
+        PaymenttableView.getItems().clear();
     }
 
 

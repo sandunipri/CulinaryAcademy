@@ -129,14 +129,16 @@ public class CourseFormController {
         String duration = courseduration.getText();
         double price = Double.parseDouble(courseprice.getText());
         String description = coursedescription.getText();
+        CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
         if (isValid()) {
-
-            CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
 
             courseBO.addCourse(courseDTO);
 
             loadCourse();
             new Alert(Alert.AlertType.INFORMATION, "Course added successfully").show();
+
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
         }
 
         clearFields();

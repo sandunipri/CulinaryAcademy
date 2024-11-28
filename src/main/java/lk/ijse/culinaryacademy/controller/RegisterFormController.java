@@ -4,9 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -15,6 +17,8 @@ import lk.ijse.culinaryacademy.bo.custom.UserBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
 import lk.ijse.culinaryacademy.dto.UserDTO;
 import lk.ijse.culinaryacademy.entity.User;
+import lk.ijse.culinaryacademy.util.Regex;
+import lk.ijse.culinaryacademy.util.TextFeid;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -69,14 +73,16 @@ public class RegisterFormController {
 
         UserDTO userDTO = new UserDTO(email, number, name, password);
 
-
-        userBO.addUser(userDTO);
-
+    if (isValid()) {
+       userBO.addUser(userDTO);
         clearFields();
-
         btnBackOnAction(event);
+
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please fill correct details").show();
     }
 
+    }
     private void clearFields() {
         telNo.clear();
         username.clear();
@@ -85,4 +91,44 @@ public class RegisterFormController {
 
     }
 
+    public boolean isValid() {
+        if (!Regex.setTextColor(TextFeid.Email, useremail)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.password, passwrod)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.TelNo, telNo)) {
+            return false;
+        }
+        if (!Regex.setTextColor(TextFeid.name, username)) {
+            return false;
+        }
+        return true;
+
+    }
+
+    public void txtuserNameKeyRealesedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.name, username)) {
+        }
+
+    }
+
+    public void txtuserPasswordKeyRealesedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.password, passwrod)) {
+        }
+
+    }
+
+    public void txtuserTelNoKeyRealesedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.TelNo, telNo)) {
+        }
+
+    }
+
+    public void txtuserEmailKeyRealesedOnAction(KeyEvent keyEvent) {
+        if (!Regex.setTextColor(TextFeid.Email, useremail)) {
+
+        }
+    }
 }
