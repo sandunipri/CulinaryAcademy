@@ -24,4 +24,12 @@ public class CourseDAOImpl implements CourseDAO {
         Session session = SessionFactoryConfig.getInstance().getSession();
         return session.createQuery("FROM Course ", Course.class).getResultList();
     }
+
+    @Override
+    public Course search(String courseName) {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        return session.createQuery("FROM Course WHERE name = :Cname", Course.class)
+                    .setParameter("Cname", courseName)
+                    .uniqueResult();
+    }
 }

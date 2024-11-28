@@ -25,4 +25,12 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = SessionFactoryConfig.getInstance().getSession();
         return session.createQuery("from Student",Student.class).getResultList();
     }
+
+    @Override
+    public Student search(String studentContact) {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        return session.createQuery("FROM Student WHERE telno = :contact", Student.class)
+                    .setParameter("contact", studentContact)
+                    .uniqueResult();
+    }
 }

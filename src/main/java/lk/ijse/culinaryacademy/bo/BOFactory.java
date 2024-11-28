@@ -25,7 +25,7 @@ public class BOFactory {
             case PAYMENT:
                 return new PaymentBOImpl();
             case PLACEPAYMENT:
-                return new PaymentBOImpl();
+                return new PlacePaymentBOImpl();
             case STUDENT:
                 return new StudentBOImpl();
             case COURSE:

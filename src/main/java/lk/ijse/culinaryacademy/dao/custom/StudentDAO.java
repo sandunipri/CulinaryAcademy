@@ -9,4 +9,6 @@ public interface StudentDAO extends SuperDAO {
     void save(Student student);
 
     List<Student> getAll();
+
+    Student search(String studentContact);
 }

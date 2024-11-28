@@ -9,4 +9,6 @@ public interface CourseDAO extends SuperDAO {
     void save(Course course);
 
     List<Course> getAll();
+
+    Course search(String courseName);
 }

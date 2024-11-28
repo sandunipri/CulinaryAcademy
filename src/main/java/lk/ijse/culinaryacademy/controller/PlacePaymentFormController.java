@@ -5,7 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.culinaryacademy.bo.BOFactory;
+import lk.ijse.culinaryacademy.bo.custom.PlacePaymentBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
+import lk.ijse.culinaryacademy.dto.CourseDTO;
+import lk.ijse.culinaryacademy.dto.PaymentDTO;
+import lk.ijse.culinaryacademy.dto.StudentCourseDetailsDTO;
+import lk.ijse.culinaryacademy.dto.StudentDTO;
 import lk.ijse.culinaryacademy.entity.Course;
 import lk.ijse.culinaryacademy.entity.Payment;
 import lk.ijse.culinaryacademy.entity.Student;
@@ -64,9 +70,10 @@ public class PlacePaymentFormController {
     Date date = new Date(System.currentTimeMillis());
     Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 
-    Course selectedCourse = null;
-    Student selectedStudent = null;
+    CourseDTO selectedCourse = null;
+    StudentDTO selectedStudent = null;
 
+    PlacePaymentBO placePaymentBO = (PlacePaymentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PLACEPAYMENT);
 
     public void initialize(){
         loadpaymentMethod();
@@ -83,12 +90,11 @@ public class PlacePaymentFormController {
     }
 
     private void loadCourses() {
-        Session session = SessionFactoryConfig.getInstance().getSession();
 
-        List<Course> courseList = session.createQuery("FROM Course", Course.class).getResultList();
+        List<CourseDTO> courseList = placePaymentBO.getAllCourses();
         try{
             choiceCourse.getItems().clear();
-            for (Course course : courseList) {
+            for (CourseDTO  course : courseList) {
                 choiceCourse.getItems().add(course.getName());
             }
             if (courseList.isEmpty()){
@@ -97,8 +103,6 @@ public class PlacePaymentFormController {
         }catch (Exception e){
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "not Found").show();
-        }finally {
-            session.close();
         }
 
 
@@ -126,9 +130,11 @@ public class PlacePaymentFormController {
         PaymentTm selectedCourseEntry = new PaymentTm(selectedCourse.getName(),selectedCourse.getPrice(), btn);
         PaymenttableView.getItems().add(selectedCourseEntry);
 
+        txtTotalPrice.setText(String.valueOf(selectedCourse.getPrice()));
+
     }
 
-    private JFXButton createButton(Course selectedCourse) {
+    private JFXButton createButton(CourseDTO selectedCourse) {
         JFXButton btn = new JFXButton("Remove");
         btn.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
 
@@ -156,12 +162,7 @@ public class PlacePaymentFormController {
             return;
         }
 
-        Session session = SessionFactoryConfig.getInstance().getSession();
-
-        try{
-            selectedCourse = session.createQuery("FROM Course WHERE name = :Cname", Course.class)
-                    .setParameter("Cname", courseName)
-                    .uniqueResult();
+            selectedCourse = placePaymentBO.searchCourse(courseName);
 
             txtcoursename.setText(selectedCourse.getName());
             txtcourseduration.setText(selectedCourse.getDuration());
@@ -171,36 +172,18 @@ public class PlacePaymentFormController {
             choiceCourse.setDisable(true);
             courseSearchbtn.setDisable(true);
 
-        }catch (Exception e){
-            e.printStackTrace();
-           /* new Alert(Alert.AlertType.ERROR, "Course not Found").show();*/
-
-        }finally {
-            session.close();
-        }
 
     }
 
     @FXML
     void btnPayClickOnAction(ActionEvent event) {
-        Session session = SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        StudentCourseDetailsDTO studentCourseDetailsDTO = new StudentCourseDetailsDTO(1,date,selectedStudent,selectedCourse);
+        double balance = selectedCourse.getPrice() - Double.parseDouble(txtAmount.getText());
+        PaymentDTO paymentDTO= new PaymentDTO(1,date,choicePaymentMethod.getValue(),selectedCourse.getPrice(),balance,studentCourseDetailsDTO);
 
-        StudentCourseDetails studentCourseDetails = new StudentCourseDetails(1,date,selectedStudent,selectedCourse);
-        session.save(studentCourseDetails);
+        placePaymentBO.placepayment(studentCourseDetailsDTO,paymentDTO);
 
-        for (PaymentTm paymentTm : PaymenttableView.getItems()) {
-            txtTotalPrice.setText(String.valueOf(paymentTm.getPrice()));
-            double balance = selectedCourse.getPrice() - Double.parseDouble(txtAmount.getText());
-
-            Payment payment = new Payment(1,date,choicePaymentMethod.getValue(),paymentTm.getPrice(),balance,studentCourseDetails);
-            session.save(payment);
-            transaction.commit();
-            session.close();
-            new Alert(Alert.AlertType.INFORMATION, "Payment Successful").show();
-
-        }
-
+        new Alert(Alert.AlertType.INFORMATION, "Payment Successful").show();
 
 
     }
@@ -213,13 +196,8 @@ public class PlacePaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter a student contact number").show();
             return;
         }
+        selectedStudent = placePaymentBO.searchStudent(studentContact);
 
-        Session session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            selectedStudent = session.createQuery("FROM Student WHERE telno = :contact", Student.class)
-                    .setParameter("contact", studentContact)
-                    .uniqueResult();
 
             if (selectedStudent == null) {
                 new Alert(Alert.AlertType.ERROR, "Student not found").show();
@@ -228,12 +206,7 @@ public class PlacePaymentFormController {
 
             new Alert(Alert.AlertType.INFORMATION, "Student found").show();
 //            txtStudentSearch.setDisable(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error searching student").show();
-        } finally {
-            session.close();
-        }
+
     }
 
 }
