@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.culinaryacademy.bo.BOFactory;
 import lk.ijse.culinaryacademy.bo.custom.StudentBO;
 import lk.ijse.culinaryacademy.config.SessionFactoryConfig;
+import lk.ijse.culinaryacademy.dto.CourseDTO;
 import lk.ijse.culinaryacademy.dto.StudentDTO;
 import lk.ijse.culinaryacademy.entity.Student;
 import lk.ijse.culinaryacademy.entity.User;
@@ -166,11 +167,40 @@ public class StudentManageFormController {
 
     @FXML
     void btnStudentSearchClickOnAction(ActionEvent event) {
-
+        int id = Integer.parseInt(studentid.getText());
+        StudentDTO studentDTO  = studentBO.searchByID(String.valueOf(id));
+        if (studentDTO != null){
+            studentName.setText(studentDTO.getName());
+            studentnic.setText(studentDTO.getNic());
+            studentemail.setText(studentDTO.getEmail());
+            studentAddress.setText(studentDTO.getAddress());
+            studenttelno.setText(studentDTO.getTelno());
+        }
     }
 
     @FXML
     void btnStudentUpdateClickOnAction(ActionEvent event) {
+        String name = studentName.getText();
+        String email = studentemail.getText();
+        String address = studentAddress.getText();
+        String nic = studentnic.getText();
+        String telNo = studenttelno.getText();
+
+
+        StudentDTO studentDTO = new StudentDTO(1, name, nic, email, address, telNo, user);
+
+        try{
+            boolean isupdate=  studentBO.update(studentDTO);
+            if (isupdate){
+                new Alert(Alert.AlertType.CONFIRMATION,"Course updated!").show();
+
+                loadStudent();
+            }
+
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,"something went wrong ").show();
+        }
+        clearFields();
 
     }
 

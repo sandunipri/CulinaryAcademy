@@ -11,4 +11,8 @@ public interface CourseDAO extends SuperDAO {
     List<Course> getAll();
 
     Course search(String courseName);
+
+    void update(Course course);
+
+    Course searchonid(int courseID);
 }

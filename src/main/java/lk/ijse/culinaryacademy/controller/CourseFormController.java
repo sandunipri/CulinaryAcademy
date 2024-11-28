@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.loader.collection.OneToManyJoinWalker;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -144,11 +145,40 @@ public class CourseFormController {
 
     @FXML
     void btnSearchCoursesOnAction(ActionEvent event) {
+        int id = Integer.parseInt(courseid.getText());
+        CourseDTO courseDTO = courseBO.searchByID(String.valueOf(id));
+        if (courseDTO != null){
+            coursename.setText(courseDTO.getName());
+            courseduration.setText(courseDTO.getDuration());
+            courseprice.setText(String.valueOf(courseDTO.getPrice()));
+            coursedescription.setText(courseDTO.getDescription());
+        }
+
 
     }
 
     @FXML
     void btnUpdateCoursesOnAction(ActionEvent event) {
+        String name = coursename.getText();
+        String duration = courseduration.getText();
+        double price = Double.parseDouble(courseprice.getText());
+        String description = coursedescription.getText();
+
+
+        CourseDTO courseDTO = new CourseDTO(1, name, duration, price, description);
+
+        try{
+            boolean isupdate=  courseBO.update(courseDTO);
+            if (isupdate){
+                new Alert(Alert.AlertType.CONFIRMATION,"Course updated!").show();
+
+                loadCourse();
+            }
+
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,"something went wrong ").show();
+        }
+        clearFields();
 
     }
 

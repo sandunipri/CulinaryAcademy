@@ -33,4 +33,22 @@ public class StudentDAOImpl implements StudentDAO {
                     .setParameter("contact", studentContact)
                     .uniqueResult();
     }
+
+    @Override
+    public void update(Student student) {
+
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(student);
+        transaction.commit();
+        session.close();
+    }
+
+    @Override
+    public Student searchonId(int id) {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        return session.createQuery("FROM Student WHERE id = :id", Student.class)
+                .setParameter("id", id)
+                .uniqueResult();
+    }
 }

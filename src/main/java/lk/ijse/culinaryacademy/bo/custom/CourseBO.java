@@ -6,7 +6,13 @@ import lk.ijse.culinaryacademy.dto.CourseDTO;
 import java.util.List;
 
 public interface CourseBO extends SuperBO {
+
+
     void addCourse(CourseDTO courseDTO);
 
     List<CourseDTO> getAllCourses();
+
+    boolean update(CourseDTO courseDTO);
+
+    CourseDTO searchByID(String courseID);
 }
